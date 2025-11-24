@@ -4,27 +4,45 @@ using UnityEngine.Rendering;
 public class Player : MonoBehaviour
 {
     Vector3 mousePos;
+    float jumpValue;
+    Rigidbody2D playerRigidBody;
+    Vector2 velocity;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerRigidBody = GetComponent<Rigidbody2D>();
+        jumpValue = 0f;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        momentum();
+        checkInput();
     }
 
-    void momentum()
+    
+
+    void checkInput()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetMouseButtonDown(0))
         {
-            mousePos = new Vector3(0, 1, 0);
-            transform.position += mousePos;
-            Debug.Log("W is down");
+            print("jumping");
+            jumpValue = 10;
+            jumpFunction();
         }
 
+    }
+
+    void jumpFunction()
+    {
+        velocity.Set(0, jumpValue);
+        playerRigidBody.linearVelocity += velocity;
+        print(playerRigidBody.linearVelocityY);
+    }
+
+    void getMousePos()
+    {
+        mousePos = Input.mousePosition;
     }
 }
