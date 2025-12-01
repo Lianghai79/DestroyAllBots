@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
-        jumpValue = 0f;
+        jumpValue = 10f;
     }
 
     // Update is called once per frame
@@ -31,8 +31,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            print("jumping");
-            jumpValue = 10;
             jumpFunction();
         }
 
@@ -42,7 +40,6 @@ public class Player : MonoBehaviour
     {
         velocity = getMousePos();
         playerRigidBody.linearVelocity += (velocity*jumpValue);
-        print(playerRigidBody.linearVelocity);
     }
 
     Vector2 getMousePos()
