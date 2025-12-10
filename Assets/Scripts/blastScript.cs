@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class blastScript : MonoBehaviour
@@ -7,7 +8,7 @@ public class blastScript : MonoBehaviour
     
     void Start()
     {
-        timeLeft = 10;
+        timeLeft = 30;
     }
 
     // Update is called once per frame
@@ -17,6 +18,14 @@ public class blastScript : MonoBehaviour
         if (timeLeft < 0)
         {
             Object.Destroy(this.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Object.Destroy(collision.gameObject);
         }
     }
 }
