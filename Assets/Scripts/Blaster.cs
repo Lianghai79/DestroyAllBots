@@ -7,6 +7,7 @@ public class Blaster : MonoBehaviour
     private Vector2 mousePosition;
     public Vector2 playerPos;
     public Vector2 direction;
+    public Vector2 gunLocation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +18,13 @@ public class Blaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gunLocation = position();
+
+        transform.position = playerPos - (gunLocation*2);
+    }
+
+    Vector2 position()
+    {
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         playerPos = Player.transform.position;
@@ -25,7 +33,6 @@ public class Blaster : MonoBehaviour
         {
             direction.Normalize();
         }
-
-        transform.position = playerPos - (direction*2);
+        return direction;
     }
 }
