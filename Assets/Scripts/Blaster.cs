@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public class Blaster : MonoBehaviour
 {
+    public GameObject laserPrefab;
     public GameObject Player;
     public Vector2 mousePosition;
     private Vector2 mouseFind;
@@ -31,6 +32,11 @@ public class Blaster : MonoBehaviour
         
         transform.position = playerPos - (gunLocation*2);
         Rotate(rotDir);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            spawnLaser();
+        }
     }
 
     Vector2 position()
@@ -57,6 +63,12 @@ public class Blaster : MonoBehaviour
         return tanAngle;
     }
 
+    public void spawnLaser()
+    {
+        Vector2 disTot = transform.position;
+        GameObject Laser = (GameObject)Instantiate(laserPrefab, disTot-(gunLocation*2), transform.rotation);
+    }
+    
     void Rotate(float rotating)
     {
         Quaternion angleAxis = Quaternion.AngleAxis(rotating, Vector3.forward);
