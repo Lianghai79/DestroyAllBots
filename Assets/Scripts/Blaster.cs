@@ -30,7 +30,7 @@ public class Blaster : MonoBehaviour
         gunLocation = position();
         rotDir = angle();
         
-        transform.position = playerPos - (gunLocation*2);
+        transform.position = playerPos - (gunLocation);
         Rotate(rotDir);
 
         if (Input.GetMouseButtonDown(0))
@@ -66,7 +66,7 @@ public class Blaster : MonoBehaviour
     public void spawnLaser()
     {
         Vector2 disTot = transform.position;
-        GameObject Laser = (GameObject)Instantiate(laserPrefab, disTot-(gunLocation*2), transform.rotation);
+        GameObject Laser = (GameObject)Instantiate(laserPrefab, disTot-(gunLocation*3), transform.rotation);
     }
     
     void Rotate(float rotating)

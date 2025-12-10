@@ -8,7 +8,7 @@ public class blastScript : MonoBehaviour
     
     void Start()
     {
-        timeLeft = 30;
+        timeLeft = 10;
     }
 
     // Update is called once per frame
