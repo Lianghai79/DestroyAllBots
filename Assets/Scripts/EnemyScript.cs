@@ -8,12 +8,12 @@ public class EnemyScript : MonoBehaviour
     Rigidbody2D enemyRigidBody;
 
     public float speed;
-    
+
     public float seperation;
     public float xPos;
-    
+
     public float playX;
-    
+
     public Vector2 playerPos;
     public Vector2 enemyPos;
     public Vector2 direction;
@@ -24,6 +24,7 @@ public class EnemyScript : MonoBehaviour
         Player = GameObject.Find("Player");
         enemyRigidBody = GetComponent<Rigidbody2D>();
         speed = 2;
+
     }
 
     // Update is called once per frame
@@ -33,7 +34,7 @@ public class EnemyScript : MonoBehaviour
         if (seperation < 10)
         {
             xPos = finding();
-            enemyRigidBody.linearVelocityX = xPos*speed;
+            enemyRigidBody.linearVelocityX = xPos * speed;
         }
     }
 
