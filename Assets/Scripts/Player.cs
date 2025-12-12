@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class Player : MonoBehaviour
     Rigidbody2D playerRigidBody;
     public Camera cam;
     Vector2 velocity;
+    public float Health;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
         jumpValue = 10f;
+        Health = 100;
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
     {
         location = cam.WorldToScreenPoint(transform.position);
         checkInput();
+        healthPoints();
     }
 
     
@@ -51,5 +55,23 @@ public class Player : MonoBehaviour
             direction.Normalize();
         }
         return direction;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Health -= 1;
+        }
+    }
+
+    void healthPoints()
+    {
+        Debug.Log(Health);
+        if (Health <= 0)
+        {
+            Health = 0;
+            SceneManager.LoadScene("Lose");
+        }
     }
 }

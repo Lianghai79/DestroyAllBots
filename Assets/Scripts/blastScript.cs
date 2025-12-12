@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class blastScript : MonoBehaviour
     
     void Start()
     {
+        transform.position = transform.position + new Vector3(0,0,2);
         timeLeft = 10;
     }
 
