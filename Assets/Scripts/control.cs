@@ -16,7 +16,7 @@ public class control : MonoBehaviour
     {
         if (enemyLeft == 0)
         {
-            SceneManager.LoadScene("win");
+            SceneManager.LoadScene("Win");
         }
     }
 }
